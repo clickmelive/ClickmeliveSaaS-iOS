@@ -94,3 +94,4 @@ fastlane/test_output
 # Apollo Codegen and CLI
 apollo-codegen-config
 apollo-ios-cli
+apollo-codegen-config.json
