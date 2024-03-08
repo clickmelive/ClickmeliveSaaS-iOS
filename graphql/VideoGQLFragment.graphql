@@ -1,0 +1,15 @@
+fragment VideoGQL on Video {
+    id
+    title
+    description
+    userId
+    thumbnailUrl
+    videoUrl
+    isActive
+    totalLikeCount
+    createdAt
+    updatedAt
+    totalViewer
+    tags
+    items
+}

@@ -1,0 +1,5 @@
+subscription OnCreateChatMessage($eventId: ID!) {
+    onCreateChatMessage(eventId: $eventId) {
+        ...ChatMessageGQL
+    }
+}

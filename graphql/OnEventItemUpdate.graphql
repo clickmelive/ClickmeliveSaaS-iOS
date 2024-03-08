@@ -1,0 +1,5 @@
+subscription OnEventItemUpdate{
+    onEventItemUpdate {
+        ...EventItemGQL
+    }
+}

@@ -1,0 +1,10 @@
+fragment EventItemGQL on EventItem {
+    id
+    externalId
+    name
+    description
+    price
+    discountedPrice
+    deeplinkUrl
+    imageUrl
+}

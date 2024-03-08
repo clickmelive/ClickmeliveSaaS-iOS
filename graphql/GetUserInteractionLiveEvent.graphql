@@ -1,0 +1,7 @@
+query GetUserInteractionLiveEvent($id: ID!, $userId: ID!) {
+    getUserInteractionForLiveEvent(id: $id, userId: $userId) {
+        userId
+        liveEventId
+        like
+    }
+}

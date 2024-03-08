@@ -1,0 +1,21 @@
+query GetVideoById($id: ID!) {
+    getVideoById(id: $id) {
+        id
+        title
+        description
+        userId
+        thumbnailUrl
+        videoUrl
+        isActive
+        totalLikeCount
+        createdAt
+        updatedAt
+        totalViewer
+        tags {
+            ...EventTagGQL
+        }
+        items {
+            ...EventItemGQL
+        }
+    }
+}

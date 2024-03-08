@@ -1,0 +1,1210 @@
+"""This directive allows results to be deferred during execution"""
+directive @defer on FIELD
+
+"""Directs the schema to enforce authorization on a field"""
+directive @aws_auth(
+  """List of cognito user pool groups which have access on this field"""
+  cognito_groups: [String]
+) on FIELD_DEFINITION
+
+"""
+Tells the service this field/object has access authorized by sigv4 signing.
+"""
+directive @aws_iam on OBJECT | FIELD_DEFINITION
+
+"""
+Tells the service this field/object has access authorized by a Cognito User Pools token.
+"""
+directive @aws_cognito_user_pools(
+  """List of cognito user pool groups which have access on this field"""
+  cognito_groups: [String]
+) on OBJECT | FIELD_DEFINITION
+
+"""
+Tells the service this field/object has access authorized by a Lambda Authorizer.
+"""
+directive @aws_lambda on OBJECT | FIELD_DEFINITION
+
+"""
+Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.
+"""
+directive @aws_publish(
+  """
+  List of subscriptions which will be published to when this mutation is called.
+  """
+  subscriptions: [String]
+) on FIELD_DEFINITION
+
+"""
+Tells the service this field/object has access authorized by an API key.
+"""
+directive @aws_api_key on OBJECT | FIELD_DEFINITION
+
+"""
+Tells the service this field/object has access authorized by an OIDC token.
+"""
+directive @aws_oidc on OBJECT | FIELD_DEFINITION
+
+"""Tells the service which mutation triggers this subscription."""
+directive @aws_subscribe(
+  """
+  List of mutations which will trigger this subscription when they are called.
+  """
+  mutations: [String]
+) on FIELD_DEFINITION
+
+"""
+A directive used by the Apollo iOS client to annotate operations or fragments that should be used exclusively for generating local cache mutations instead of as standard operations.
+"""
+directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+"""
+A directive used by the Apollo iOS code generation engine to generate custom import statements in operation or fragment definition files. An import statement to import a module with the name provided in the `module` argument will be added to the generated definition file.
+"""
+directive @import(
+  """The name of the module to import."""
+  module: String!
+) repeatable on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+type Query {
+  """ Get Videos with pagination from DynamoDB(Will not be used for now, you can use searchVideos).
+  """
+  getVideos(limit: Int, nextToken: String): VideoConnection
+
+  """ Get Video by id for details from DynamoDB will resolve tags and event items too if you query them in the response.
+  """
+  getVideoById(id: ID!): VideoDetail!
+
+  """ Get Event Items by Video Id. Will be used to resolve event items for a video.
+  """
+  getEventItemsByVideoId(id: ID!): [EventItem]!
+
+  """ Get Tags by Video Id. Will be used to resolve tags for a video."""
+  getTagsByVideoId(id: ID!): [Tag]!
+
+  """ Get User Interaction for a video. Will be used to resolve user interaction for a video. User Interaction includes like and dislike.
+  """
+  getUserInteractionForVideo(id: ID!, userId: ID!): VideoUserInteraction
+
+  """ Search Videos with pagination from Opensearch. You can use different filters and pagination to search videos. All videos will be sorted by createdAt in descending order.
+  """
+  searchVideos(input: VideoSearchInput): VideoSearchConnection
+
+  """ Get Videos of User with pagination from DynamoDB. Will be used to get videos of a user.(Can be used in host app to get videos of an user)
+  """
+  getVideosOfUser(isActive: Boolean, limit: Int, nextToken: String): VideoConnection
+
+  """ Get Live Events with pagination from DynamoDB(Will not be used for now, you can use searchLiveEvents).
+  """
+  getLiveEvents(limit: Int, nextToken: String): LiveEventConnection
+
+  """ Get Live Event by id for details from DynamoDB will resolve tags and event items too if you query them in the response.
+  """
+  getLiveEventById(id: ID!): LiveEventDetail
+
+  """ Get Event Items by Live Event Id. Will be used to resolve event items for a live event.
+  """
+  getEventItemsByLiveEventId(id: ID!): [EventItem]
+
+  """ Get Tags by Live Event Id. Will be used to resolve tags for a live event.
+  """
+  getTagsByLiveEventId(id: ID!): [Tag]
+
+  """ Get User Interaction for a live event. Will be used to resolve user interaction for a live event. User Interaction includes like and dislike.
+  """
+  getUserInteractionForLiveEvent(id: ID!, userId: ID!): LiveEventUserInteraction
+
+  """ Get Live Events of User with pagination from DynamoDB. Will be used to get live events of a user.(Can be used in host app to get live events of an user)
+  """
+  getLiveEventsOfUser(isActive: Boolean, status: Int, limit: Int, nextToken: String): LiveEventConnection
+
+  """ Get Live Event Viewer Count. Will be used to get live event viewer count when the live event status is streaming(3). There is 5 seconds cache for this query.
+  """
+  getLiveViewerCount(id: ID!): LiveEventViewer
+
+  """ Get Live Event Stream Viewer Metric. Will be used to get live event viewer topics. There is 5 seconds cache for this query.
+  """
+  getLiveStreamConcurrentViewerMetric(id: ID!): [Metric]
+
+  """ Search Live Events with pagination from Opensearch. You can use different filters and pagination to search live events. All live events will be sorted by createdAt in descending order.
+  """
+  searchLiveEvents(input: LiveEventSearchInput): LiveEventSearchConnection
+
+  """ Get Tags with pagination from DynamoDB.(SDK will use this query to get tags for the developer.Search Tags will be used in the host app and admin panel)
+  """
+  getTags(limit: Int, nextToken: String): TagConnection
+
+  """ Get Tag by id for details from DynamoDB."""
+  getTagById(id: ID!): Tag
+
+  """ Get Event Items with pagination from DynamoDB.(This will not be used for now, you can use searchEventItems in host app or admin panel).
+  """
+  getEventItems(limit: Int, nextToken: String): EventItemConnection
+
+  """ Get Event Item by id for details from DynamoDB."""
+  getEventItemById(id: ID!): EventItem
+
+  """ Search Tags with pagination from DynamoDB. You can use search by title field.
+  """
+  searchTags(title: String, limit: Int, page: Int): TagSearchConnection
+
+  """ Search Event Items with pagination from DynamoDB. You can use search by name and description fields.
+  """
+  searchEventItems(name: String, description: String, limit: Int, page: Int): EventItemSearchConnection
+
+  """ Get Chat Room by Event Id. Will be used to get chat room by event id.(Will not be used for now)
+  """
+  getChatRoomByEventId(eventId: ID!): ChatRoom
+
+  """ Get Chat Room Content by Event Id. Will be used to get chat room content by event id. This will return the latest messages in the chat room but for client purposes you have to reverse the data coming from here.
+  """
+  getChatRoomContentByEventId(eventId: ID!, nextToken: String): ChatRoomContent
+
+  """ Get Chat Ban by User Id. Will be used to get chat ban by user id."""
+  getChatBan(userId: ID!): ChatMessageBan
+
+  """ Get Chat Ban Logs by User Id. Will be used to get chat ban logs by user id.This will be used in admin panel to see the chat ban logs of a user.
+  """
+  getChatBanLogs(input: GetChatMessageBanLogsInput!): ChatMessageBanLogsContent
+}
+
+""" This will be used to Paginate Videos in DynamoDB."""
+type VideoConnection {
+  """ List of Videos."""
+  videos: [Video]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This represents the video entity in the system."""
+type Video {
+  """ Id of the video."""
+  id: ID!
+
+  """ Title of the video."""
+  title: String!
+
+  """ Description of the video."""
+  description: String
+
+  """ The user id of the video creator."""
+  userId: String!
+
+  """ Tag ids of the video."""
+  tags: [String]
+
+  """ Event item ids of the video."""
+  items: [String]
+
+  """ Thumbnail url of the video."""
+  thumbnailUrl: String!
+
+  """ Video url of the video."""
+  videoUrl: String!
+
+  """ Active status of the video."""
+  isActive: Boolean!
+
+  """ Total like count of the video."""
+  totalLikeCount: Int!
+
+  """ Created at date of the video."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the video."""
+  updatedAt: AWSDateTime!
+
+  """ Total viewer count of the video."""
+  totalViewer: Int!
+}
+
+"""
+The `AWSDateTime` scalar type provided by AWS AppSync, represents a valid ***extended*** [ISO 8601 DateTime](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) string. In other words, this scalar type accepts datetime strings of the form `YYYY-MM-DDThh:mm:ss.SSSZ`.  The scalar can also accept "negative years" of the form `-YYYY` which correspond to years before `0000`. For example, "**-2017-01-01T00:00Z**" and "**-9999-01-01T00:00Z**" are both valid datetime strings.  The field after the two digit seconds field is a nanoseconds field. It can accept between 1 and 9 digits. So, for example, "**1970-01-01T12:00:00.2Z**", "**1970-01-01T12:00:00.277Z**" and "**1970-01-01T12:00:00.123456789Z**" are all valid datetime strings.  The seconds and nanoseconds fields are optional (the seconds field must be specified if the nanoseconds field is to be used).  The [time zone offset](https://en.wikipedia.org/wiki/ISO_8601#Time_zone_designators) is compulsory for this scalar. The time zone offset must either be `Z` (representing the UTC time zone) or be in the format `±hh:mm:ss`. The seconds field in the timezone offset will be considered valid even though it is not part of the ISO 8601 standard.
+"""
+scalar AWSDateTime
+
+""" This will be used to resolve the details of a video. As you can see tags and items are detailed so you can query them in the response but if you do it will send another request to the system to resolve them.
+"""
+type VideoDetail {
+  """ Id of the video."""
+  id: ID!
+
+  """ Title of the video."""
+  title: String!
+
+  """ Description of the video."""
+  description: String
+
+  """ The user id of the video creator."""
+  userId: String!
+
+  """ Tags of the video. Will resolve the tags of the video."""
+  tags: [Tag]
+
+  """ Event items of the video. Will resolve the event items of the video."""
+  items: [EventItem]
+
+  """ Thumbnail url of the video."""
+  thumbnailUrl: String!
+
+  """ Video url of the video."""
+  videoUrl: String!
+
+  """ Active status of the video."""
+  isActive: Boolean!
+
+  """ Total like count of the video."""
+  totalLikeCount: Int!
+
+  """ Created at date of the video."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the video."""
+  updatedAt: AWSDateTime!
+
+  """ Total viewer count of the video."""
+  totalViewer: Int!
+}
+
+""" This represents the tag entity in the system."""
+type Tag {
+  """ Id of the tag."""
+  id: ID!
+
+  """ Title of the tag."""
+  title: String!
+
+  """ Created at date of the tag."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the tag."""
+  updatedAt: AWSDateTime!
+}
+
+""" This represents the event item entity in the system."""
+type EventItem {
+  """ Id of the event item."""
+  id: ID!
+
+  """ External id of the event item."""
+  externalId: String
+
+  """ Name of the event item."""
+  name: String!
+
+  """ Description of the event item."""
+  description: String
+
+  """ Price of the event item."""
+  price: Float
+
+  """ Discounted price of the event item."""
+  discountedPrice: Float
+
+  """ Deeplink url of the event item."""
+  deeplinkUrl: String!
+
+  """ Image url of the event item."""
+  imageUrl: String!
+}
+
+""" This type will be used for user interaction for a video. User Interaction includes like and dislike.
+"""
+type VideoUserInteraction {
+  """ Id of the user."""
+  userId: ID!
+
+  """ Id of the video."""
+  videoId: ID!
+
+  """ Like status of the user for the video."""
+  like: Boolean
+}
+
+""" This will be used to Paginate Videos in Opensearch."""
+type VideoSearchConnection {
+  """ List of Videos."""
+  videos: [Video]
+
+  """ Pagination metadata for the search query."""
+  metadata: PaginationMetadata!
+}
+
+""" This will be used to resolve the pagination metadata for the search queries.
+"""
+type PaginationMetadata {
+  """ Total record count of the search query."""
+  totalRecordCount: Int!
+
+  """ Total page count of the search query."""
+  pageSize: Int!
+
+  """ Current page number of the search query."""
+  pageNumber: Int!
+}
+
+""" This input will be used to search videos in the system."""
+input VideoSearchInput {
+  """ Title of the video. We can prefix search after 3 characters. For a phrase search(multiple words), the phrase should match completely.
+  """
+  title: String
+
+  """ We can filter videos if any tags we send here is in the tags of the video.
+  """
+  tags: [String]
+
+  """ If we use startDate we should send endDate too this will filter videos by their created at date is in between the startDate and endDate.
+  """
+  startDate: AWSDateTime
+
+  """ If we use endDate we should send startDate too this will filter videos by their created at date is in between the startDate and endDate.
+  """
+  endDate: AWSDateTime
+
+  """ We can filter videos by their active status. We can only search for passive videos in host app or admin panel.
+  """
+  isActive: Boolean
+
+  """ Limit of the search query."""
+  limit: Int
+
+  """ Page of the search query."""
+  page: Int
+}
+
+""" This will be used to Paginate Live Events in DynamoDB."""
+type LiveEventConnection {
+  """ List of Live Events."""
+  liveEvents: [LiveEvent]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This represents the live event entity in the system."""
+type LiveEvent {
+  """ Id of the live event."""
+  id: ID!
+
+  """ Status of the live event. 0: Created, 1: Teaser, 2: Ready to Stream, 3: Streaming, 4: Stream Ended, 5: Cancelled.
+  """
+  status: Int!
+
+  """ Type of the live event. 1: Live Event, 2: Live Auction."""
+  type: Int!
+
+  """ Title of the live event."""
+  title: String!
+
+  """ The user id of the live event creator."""
+  userId: String!
+
+  """ Description of the live event."""
+  description: String
+
+  """ Tags of the live event."""
+  tags: [String]
+
+  """ Event items of the live event."""
+  items: [String]
+
+  """ Thumbnail url of the live event."""
+  thumbnailUrl: String!
+
+  """ Replay url of the live event."""
+  replayUrl: String
+
+  """ Teaser url of the live event."""
+  teaserUrl: String
+
+  """ Playback url of the live event."""
+  playbackUrl: String
+
+  """ Active status of the live event."""
+  isActive: Boolean!
+
+  """ Total like count of the live event."""
+  totalLikeCount: Int!
+
+  """ Estimated starting date of the live event."""
+  estimatedStartingDate: AWSDateTime!
+
+  """ Starting date of the live event."""
+  startingDate: AWSDateTime
+
+  """ Ending date of the live event."""
+  endingDate: AWSDateTime
+
+  """ Created at date of the live event."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the live event."""
+  updatedAt: AWSDateTime!
+
+  """ Total viewer count of the live event."""
+  totalViewer: Int!
+}
+
+""" This will be used to resolve the details of a live event. As you can see tags and items are detailed so you can query them in the response but if you do it will send another request to the system to resolve them.
+"""
+type LiveEventDetail {
+  """ Id of the live event."""
+  id: ID!
+
+  """ Status of the live event. 0: Created, 1: Teaser, 2: Ready to Stream, 3: Streaming, 4: Stream Ended, 5: Cancelled.
+  """
+  status: Int!
+
+  """ Type of the live event. 1: Live Event, 2: Live Auction."""
+  type: Int!
+
+  """ Title of the live event."""
+  title: String!
+
+  """ The user id of the live event creator."""
+  userId: String!
+
+  """ Description of the live event."""
+  description: String
+
+  """ Tags of the live event. Will resolve the tags of the live event."""
+  tags: [Tag]
+
+  """ Event items of the live event. Will resolve the event items of the live event.
+  """
+  items: [EventItem]
+
+  """ Thumbnail url of the live event."""
+  thumbnailUrl: String!
+
+  """ Replay url of the live event."""
+  replayUrl: String
+
+  """ Teaser url of the live event."""
+  teaserUrl: String
+
+  """ Playback url of the live event."""
+  playbackUrl: String
+
+  """ Active status of the live event."""
+  isActive: Boolean!
+
+  """ Total like count of the live event."""
+  totalLikeCount: Int!
+
+  """ Estimated starting date of the live event."""
+  estimatedStartingDate: AWSDateTime!
+
+  """ Starting date of the live event."""
+  startingDate: AWSDateTime
+
+  """ Ending date of the live event."""
+  endingDate: AWSDateTime
+
+  """ Created at date of the live event."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the live event."""
+  updatedAt: AWSDateTime!
+
+  """ Total viewer count of the live event."""
+  totalViewer: Int!
+}
+
+""" This will be used for user interaction for a live event. User Interaction includes like and dislike.
+"""
+type LiveEventUserInteraction {
+  """ Id of the user."""
+  userId: ID!
+
+  """ Id of the live event."""
+  liveEventId: ID!
+
+  """ Like status of the user for the live event."""
+  like: Boolean
+}
+
+""" This represents the live viewer count for a live event when in streaming status(3).
+"""
+type LiveEventViewer {
+  viewerCount: Int
+}
+
+""" This represents the metric for events with timestamps for analytic charts in admin panel.
+"""
+type Metric {
+  timestamp: AWSDateTime!
+  value: Float!
+}
+
+""" This will be used to Paginate Live Events in Opensearch."""
+type LiveEventSearchConnection {
+  """ List of Live Events."""
+  liveEvents: [LiveEvent]
+
+  """ Pagination metadata for the search query."""
+  metadata: PaginationMetadata!
+}
+
+""" This input will be used to search live events in the system."""
+input LiveEventSearchInput {
+  """ Title of the live event. We can prefix search after 3 characters. For a phrase search(multiple words), the phrase should match completely.
+  """
+  title: String
+
+  """ Tags of the live event. We can filter live events if any tags we send here is in the tags of the live event.
+  """
+  tags: [String]
+
+  """ Status of the live event. We can filter live events by their status. 0: Created, 1: Teaser, 2: Ready to Stream, 3: Streaming, 4: Stream Ended, 5: Cancelled.
+  """
+  statuses: [String]
+
+  """ If we use startDate we should send endDate too this will filter live events by their created at date is in between the startDate and endDate.
+  """
+  startDate: AWSDateTime
+
+  """ If we use endDate we should send startDate too this will filter live events by their created at date is in between the startDate and endDate.
+  """
+  endDate: AWSDateTime
+
+  """ We can filter live events by their active status. We can only search for passive live events in host app or admin panel.
+  """
+  isActive: Boolean
+
+  """ We can filter live events by their replay availability. By using this field we can divide stream ended status live events to replay available and not available.
+  """
+  replayAvailable: Boolean
+
+  """ Limit of the search query."""
+  limit: Int
+
+  """ Page of the search query."""
+  page: Int
+}
+
+""" This will be used to Paginate Tags in DynamoDB."""
+type TagConnection {
+  """ List of Tags."""
+  tags: [Tag]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This will be used to Paginate Event Items in DynamoDB."""
+type EventItemConnection {
+  """ List of Event Items."""
+  items: [EventItem]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This will be used to resolve the pagination metadata for the tag search queries.
+"""
+type TagSearchConnection {
+  """ List of Tags."""
+  tags: [Tag]
+
+  """ Pagination metadata for the search query."""
+  metadata: PaginationMetadata!
+}
+
+""" This will be used to Paginate Event Items in Opensearch."""
+type EventItemSearchConnection {
+  """ List of Event Items."""
+  items: [EventItem]
+
+  """ Pagination metadata for the search query."""
+  metadata: PaginationMetadata!
+}
+
+""" This represents the chat room entity in the system."""
+type ChatRoom {
+  """ Id of the chat room."""
+  id: ID!
+
+  """ Event id of the chat room."""
+  eventId: ID!
+
+  """ Active status of the chat room."""
+  isActive: Boolean!
+
+  """ Created at date of the chat room."""
+  createdAt: AWSDateTime!
+
+  """ Last Updated at date of the chat room."""
+  updatedAt: AWSDateTime!
+}
+
+""" This will be used to paginate chat messages in a chat room. Messages return from here will be the latest messages in the chat room but for client purposes you have to reverse the data coming from here because its sorted by createdAt field in descending order.
+"""
+type ChatRoomContent {
+  """ List of chat messages."""
+  messages: [ChatMessage]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This represents the chat message entity in the system."""
+type ChatMessage {
+  """ Id of the chat message."""
+  id: ID!
+
+  """ Event id of the chat message."""
+  eventId: ID!
+
+  """ User id of the chat message creator."""
+  userId: String!
+
+  """ User display name of the chat message creator."""
+  userDisplayName: String!
+
+  """ Message of the chat message."""
+  message: String!
+
+  """ Created at date of the chat message."""
+  createdAt: AWSDateTime!
+}
+
+""" This represents the chat message ban entity in the system."""
+type ChatMessageBan {
+  """ Id of the chat message ban."""
+  id: ID!
+
+  """ Banned Event ids"""
+  eventIds: [ID]
+
+  """ Banned User id"""
+  userId: String!
+
+  """ Banned User display name"""
+  userDisplayName: String
+
+  """ Banned Message id"""
+  messageId: ID!
+
+  """ Banned Message"""
+  message: String!
+
+  """ Ban type of the chat message ban. GENERAL, SINGLE, UNBAN"""
+  banType: ChatMessageBanType!
+
+  """ Created at date of the chat message ban."""
+  createdAt: AWSDateTime!
+}
+
+enum ChatMessageBanType {
+  GENERAL
+  SINGLE
+  UNBAN
+}
+
+""" This will be used to paginate chat ban logs of a user. This will be used in admin panel to see the chat ban logs of a user.
+"""
+type ChatMessageBanLogsContent {
+  """ Chat Message Ban Detail"""
+  ban: ChatMessageBan
+
+  """ List of chat message ban logs."""
+  logs: [ChatMessageBanLog]
+
+  """ Next token for the pagination."""
+  nextToken: String
+}
+
+""" This represents the chat message ban log entity in the system. This log will be used in admin panel to see the chat ban logs of a user.
+"""
+type ChatMessageBanLog {
+  """ Id of the chat message ban log."""
+  id: ID!
+
+  """ Event id of the chat message ban log."""
+  eventId: ID!
+
+  """ User id of the chat message ban."""
+  userId: String!
+
+  """ User display name of the chat message ban."""
+  userDisplayName: String
+
+  """ Message id of the chat message ban."""
+  messageId: ID!
+
+  """ Message of the chat message ban."""
+  message: String!
+
+  """ Ban type of the chat message ban. GENERAL, SINGLE, UNBAN"""
+  banType: ChatMessageBanType!
+
+  """ Created at date of the chat message ban."""
+  createdAt: AWSDateTime!
+}
+
+""" This input will be used to get chat message ban logs of a user. This will be used in admin panel to see the chat ban logs of a user.
+"""
+input GetChatMessageBanLogsInput {
+  """ User id of the chat message ban."""
+  userId: ID!
+
+  """ Next token for the pagination."""
+  nextToken: String
+
+  """ Limit of the pagination."""
+  limit: Int
+}
+
+type Mutation {
+  """ Create Video in DynamoDB. Will be used to create a video in the system.
+  """
+  createVideo(input: VideoInput!): Video
+
+  """ Update Video in DynamoDB. Will be used to update a video in the system.
+  """
+  updateVideo(input: VideoUpdateInput!): Video
+
+  """ Update Video Cache in Appsync and fires an event to the update video subscription. This will be used by the system directly client side shouldn't use this mutation.
+  """
+  updateVideoCache(input: VideoCacheUpdateInput!): Video
+
+  """ Delete Video in DynamoDB. Will be used to delete a video in the system.
+  """
+  deleteVideo(id: ID!): Video
+
+  """ Update Active Video in DynamoDB. Will be used to update active status of a video in the system.
+  """
+  updateActiveVideo(input: EventActiveUpdateInput!): Video
+
+  """ Increase Viewer Count of a Video. Will be used to increase total viewer count of a video in the system.
+  """
+  increaseViewerVideo(id: ID!, userId: ID!): Video
+
+  """ Like or Dislike a Video. Will be used to like or dislike a video in the system.
+  """
+  likeVideo(videoId: ID!, userId: ID!, like: Boolean!): Video
+
+  """ Create Live Event in DynamoDB. Will be used to create a live event in the system.
+  """
+  createLiveEvent(input: LiveEventInput!): LiveEvent
+
+  """ Update Live Event in DynamoDB. Will be used to update a live event in the system.
+  """
+  updateLiveEvent(input: LiveEventUpdateInput!): LiveEvent
+
+  """ Update Live Event Cache in Appsync and fires an event to the update live event subscription. This will be used by the system directly client side shouldn't use this mutation.
+  """
+  updateLiveEventCache(input: LiveEventCacheUpdateInput!): LiveEvent
+
+  """ Cancel Live Event in DynamoDB. Will be used to cancel a live event in the system. Only CREATED(0), TEASER(1) and STREAM_ENDED(4) live events can be cancelled. CANCELLED status will be 5.
+  """
+  cancelLiveEvent(id: ID!): LiveEvent
+
+  """ Delete Live Event in DynamoDB. Will be used to delete a live event in the system.
+  """
+  deleteLiveEvent(id: ID!): LiveEvent
+
+  """ Update Active Live Event in DynamoDB. Will be used to update active status of a live event in the system.
+  """
+  updateActiveLiveEvent(input: EventActiveUpdateInput!): LiveEvent
+
+  """ Ready to Stream Live Event. Will be used to update the live events status to ready to stream and return stream credentials for the client to start streaming.
+  """
+  readyToStreamLiveEvent(id: ID!): LiveEventReadyToStream
+
+  """ Like or Dislike a Live Event. Will be used to like or dislike a live event in the system.
+  """
+  likeLiveEvent(liveEventId: ID!, userId: ID!, like: Boolean!): LiveEvent
+
+  """ Increase Viewer Count of a Live Event. Will be used to increase total viewer count of a live event in the system.
+  """
+  increaseViewerLiveEvent(id: ID!, userId: ID!): LiveEvent
+
+  """ Create Tag in DynamoDB. Will be used to create a tag in the system.Will be used in admin panel to create tags.
+  """
+  createTag(title: String!): Tag
+
+  """ Update Tag in DynamoDB. Will be used to update a tag in the system.Will be used in admin panel to update tags.
+  """
+  updateTag(input: TagUpdateInput!): Tag
+
+  """ Delete Tag in DynamoDB. Will be used to delete a tag in the system.Will be used in admin panel to delete tags."
+  """
+  deleteTag(id: ID!): Tag
+
+  """ Create Event Item in DynamoDB. Will be used to create an event item in the system.Will be used in admin panel to create event items.
+  """
+  createEventItem(input: EventItemCreateInput!): EventItem
+
+  """ Update Event Item in DynamoDB. Will be used to update an event item in the system.Will be used in admin panel to update event items.
+  """
+  updateEventItem(input: EventItemUpdateInput!): EventItem
+
+  """ Delete Event Item in DynamoDB. Will be used to delete an event item in the system.Will be used in admin panel to delete event items.
+  """
+  deleteEventItem(id: ID!): EventItem
+
+  """ Create Chat Room in DynamoDB. This will not be used for now system automatically creates chat rooms for live events.
+  """
+  createChatRoom(eventId: ID!): ChatRoom
+
+  """ Create Chat Message in DynamoDB. Will be used to create a chat message in the system.
+  """
+  createChatMessage(input: ChatMessageInput!): ChatMessage
+
+  """ Create Chat Message Ban in DynamoDB. Will be used to create a chat message ban in the system. This will be used in admin panel to ban a user from chat.
+  """
+  createChatMessageBan(input: ChatMessageBanInput!): ChatMessageBan
+
+  """ Export Chat Messages. Will be used to export chat messages in the system. This will be used in admin panel to export chat messages in csv or json format.
+  """
+  chatMessageExporter(eventId: ID!, format: ChatMessageExportFormat): ChatMessageExport
+}
+
+""" This input will be used to create a video in the system."""
+input VideoInput {
+  """ Title of the video."""
+  title: String!
+
+  """ Description of the video."""
+  description: String
+
+  """ Tags of the video. Should be in the format ["tag1_id", "tag2_id"]. Where tag1_id and tag2_id are tag ids in the system.
+  """
+  tags: [String]
+
+  """ Event items of the video. Should be in the format ["eventItem1_id", "eventItem2_id"]. Where eventItem1_id and eventItem2_id are event item ids in the system.
+  """
+  items: [String]
+
+  """ Thumbnail url of the video."""
+  thumbnailUrl: String!
+
+  """ Video url of the video."""
+  videoUrl: String!
+}
+
+""" This input will be used to update a video in the system. Only the fields that are needed to be updated should be included in the input.
+"""
+input VideoUpdateInput {
+  """ Id of the video."""
+  id: ID!
+
+  """ Title of the video."""
+  title: String
+
+  """ Description of the video."""
+  description: String
+
+  """ Tags of the video. Should be in the format ["tag1_id", "tag2_id"]. Where tag1_id and tag2_id are tag ids in the system.
+  """
+  tags: [String]
+
+  """ Event items of the video. Should be in the format ["eventItem1_id", "eventItem2_id"]. Where eventItem1_id and eventItem2_id are event item ids in the system.
+  """
+  items: [String]
+
+  """ Thumbnail url of the video."""
+  thumbnailUrl: String
+
+  """ Video url of the video."""
+  videoUrl: String
+}
+
+""" This input will be used to update the video cache in Appsync and fires an event to the update video subscription.
+"""
+input VideoCacheUpdateInput {
+  id: ID!
+  title: String!
+  description: String
+  userId: String!
+  tags: [String]
+  items: [String]
+  thumbnailUrl: String!
+  videoUrl: String!
+  isActive: Boolean!
+  totalLikeCount: Int!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  totalViewer: Int!
+}
+
+""" This input will be used to update the active status of an event."""
+input EventActiveUpdateInput {
+  """ Id of the live event or video."""
+  id: ID!
+
+  """ Active status of the live event or video."""
+  isActive: Boolean!
+}
+
+""" This input will be used to create a live event in the system."""
+input LiveEventInput {
+  """ Title of the live event."""
+  title: String!
+
+  """ Type of the live event. 1: Live Event, 2: Live Auction."""
+  type: Int!
+
+  """ Description of the live event."""
+  description: String
+
+  """ Tags of the live event. Should be in the format ["tag1_id", "tag2_id"]. Where tag1_id and tag2_id are tag ids in the system.
+  """
+  tags: [String]
+
+  """ Event items of the live event. Should be in the format ["eventItem1_id", "eventItem2_id"]. Where eventItem1_id and eventItem2_id are event item ids in the system.
+  """
+  items: [String]
+
+  """ Teaser url of the live event."""
+  teaserUrl: String
+
+  """ Thumbnail url of the live event."""
+  thumbnailUrl: String!
+
+  """ Estimated starting date of the live event."""
+  estimatedStartingDate: AWSDateTime!
+}
+
+""" This input will be used to update a live event in the system. Only the fields that are needed to be updated should be included in the input.
+"""
+input LiveEventUpdateInput {
+  """ Id of the live event."""
+  id: ID!
+
+  """ Status of the live event."""
+  title: String
+
+  """ Description of the live event."""
+  description: String
+
+  """ Tags of the live event. Should be in the format ["tag1_id", "tag2_id"]. Where tag1_id and tag2_id are tag ids in the system.
+  """
+  tags: [String]
+
+  """ Event items of the live event. Should be in the format ["eventItem1_id", "eventItem2_id"]. Where eventItem1_id and eventItem2_id are event item ids in the system.
+  """
+  items: [String]
+
+  """ Teaser url of the live event."""
+  teaserUrl: String
+
+  """ Thumbnail url of the live event."""
+  thumbnailUrl: String
+
+  """ Estimated starting date of the live event."""
+  estimatedStartingDate: AWSDateTime
+}
+
+""" This input will be used to update the live event cache in Appsync and fires an event to the update live event subscription.
+"""
+input LiveEventCacheUpdateInput {
+  id: ID!
+  status: Int!
+  type: Int!
+  title: String!
+  userId: String!
+  description: String
+  tags: [String]
+  items: [String]
+  thumbnailUrl: String!
+  replayUrl: String
+  teaserUrl: String
+  playbackUrl: String
+  isActive: Boolean!
+  totalLikeCount: Int!
+  estimatedStartingDate: AWSDateTime!
+  startingDate: AWSDateTime
+  endingDate: AWSDateTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  totalViewer: Int!
+}
+
+""" This will be used to get stream credentials for a live event when the status is ready to stream(2).
+"""
+type LiveEventReadyToStream {
+  """ Id of the live event."""
+  id: ID!
+
+  """ Ingest endpoint of the live event."""
+  ingestEndpoint: String!
+
+  """ Stream key of the live event."""
+  streamKey: String!
+
+  """ Playback url of the live event."""
+  playbackUrl: String!
+}
+
+""" This input will be used to update the title of a tag in the system."""
+input TagUpdateInput {
+  """ Id of the tag."""
+  id: ID!
+
+  """ Title of the tag."""
+  title: String!
+}
+
+""" This input will be used to create an event item in the system."""
+input EventItemCreateInput {
+  """ External id of the event item."""
+  externalId: String
+
+  """ Name of the event item."""
+  name: String!
+
+  """ Description of the event item."""
+  description: String
+
+  """ Price of the event item."""
+  price: Float
+
+  """ Discounted price of the event item."""
+  discountedPrice: Float
+
+  """ Deeplink url of the event item."""
+  deeplinkUrl: String!
+
+  """ Image url of the event item."""
+  imageUrl: String!
+}
+
+""" This input will be used to update an event item in the system. Only the fields that are needed to be updated should be included in the input.
+"""
+input EventItemUpdateInput {
+  """ Id of the event item."""
+  id: ID!
+
+  """ External id of the event item."""
+  externalId: String
+
+  """ Name of the event item."""
+  name: String
+
+  """ Description of the event item."""
+  description: String
+
+  """ Price of the event item."""
+  price: Float
+
+  """ Discounted price of the event item."""
+  discountedPrice: Float
+
+  """ Deeplink url of the event item."""
+  deeplinkUrl: String
+
+  """ Image url of the event item."""
+  imageUrl: String
+}
+
+""" This input will be used to create a chat message in the system."""
+input ChatMessageInput {
+  """ User id of the chat message creator."""
+  userId: ID!
+
+  """ Event id of the chat message."""
+  eventId: ID!
+
+  """ User display name of the chat message creator."""
+  userDisplayName: String!
+
+  """ Message of the chat message."""
+  message: String!
+}
+
+""" This input will be used to create a chat message ban in the system. This will be used in admin panel to ban a user from chat.
+"""
+input ChatMessageBanInput {
+  """ Banned Event id will be used if ChatMessageBanType is SINGLE"""
+  eventId: ID
+
+  """ Banned User id"""
+  userId: ID!
+
+  """ Banned User display name"""
+  userDisplayName: String
+
+  """ Banned Message id"""
+  messageId: ID!
+
+  """ Banned Message"""
+  message: String!
+
+  """ Ban type of the chat message ban. GENERAL, SINGLE, UNBAN"""
+  banType: ChatMessageBanType!
+}
+
+""" This will be used to export chat messages in csv or json format."""
+type ChatMessageExport {
+  """ Export url of the chat messages."""
+  url: String!
+}
+
+enum ChatMessageExportFormat {
+  JSON
+  CSV
+}
+
+type Subscription {
+  """ Subscribe to Video Stats Change. Will be used to subscribe to video stats change when a video is liked or viewer count is increased.
+  """
+  onVideoStatsChange(id: ID!): Video
+
+  """ Subscribe to Video Update. Will be used to subscribe to video update when a video is updated.
+  """
+  onVideoUpdate(id: ID!): Video
+
+  """ Subscribe to Video Remove. Will be used to subscribe to video remove when a video is deleted.
+  """
+  onVideoRemove: Video
+
+  """ Subscribe to Video Passive. Will be used to subscribe to video passive when a video is updated to passive.
+  """
+  onVideoPassive: Video
+
+  """ Subscribe to Create Chat Message. Will be used to subscribe to chat messages in a live event.
+  """
+  onCreateChatMessage(eventId: ID!): ChatMessage
+
+  """ Subscribe to Create Chat Message Ban. Will be used to subscribe to chat message bans in a live event.
+  """
+  onCreateChatMessageBan(eventId: ID!): ChatMessageBan
+
+  """ Subscribe to Live Event Stats Change. Will be used to subscribe to live event stats change when a live event is liked or total viewer count is increased.
+  """
+  onLiveEventStatsChange(id: ID!): LiveEvent
+
+  """ Subscribe to Live Event Update. Will be used to subscribe to live event update when a live event is updated.
+  """
+  onLiveEventUpdate(id: ID!): LiveEvent
+
+  """ Subscribe to Live Event Remove. Will be used to subscribe to live event remove when a live event is deleted.
+  """
+  onLiveEventRemove: LiveEvent
+
+  """ Subscribe to Live Event Passive. Will be used to subscribe to live event passive when a live event is updated to passive.
+  """
+  onLiveEventPassive: LiveEvent
+
+  """ Subscribe to EventItem Update. Will be used to subscribe to event item update when an event item is updated.
+  """
+  onEventItemUpdate: EventItem
+
+  """ Subscribe to Tag Update. Will be used to subscribe to tag update when a tag is updated.
+  """
+  onTagUpdate: Tag
+}
+
+""" This input will be used to export chat messages in csv or json format.
+"""
+input ChatMessageExportInput {
+  """ Event id of the chat."""
+  eventId: ID!
+
+  """ Export format of the chat messages. JSON, CSV"""
+  format: ChatMessageExportFormat!
+}

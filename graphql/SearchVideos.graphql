@@ -1,0 +1,10 @@
+query SearchVideos($input: VideoSearchInput) {
+    searchVideos(input: $input) {
+        videos {
+            ...VideoGQL
+        }
+        metadata {
+            ...MetadataGQL
+        }
+    }
+}

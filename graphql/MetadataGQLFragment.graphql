@@ -1,0 +1,5 @@
+fragment MetadataGQL on PaginationMetadata {
+    totalRecordCount
+    pageSize
+    pageNumber
+}

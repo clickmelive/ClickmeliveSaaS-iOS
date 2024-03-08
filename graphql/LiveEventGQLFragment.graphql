@@ -1,0 +1,22 @@
+fragment LiveEventGQL on LiveEvent {
+    id
+    status
+    type
+    title
+    userId
+    description
+    thumbnailUrl
+    replayUrl
+    teaserUrl
+    playbackUrl
+    isActive
+    totalLikeCount
+    estimatedStartingDate
+    startingDate
+    endingDate
+    createdAt
+    updatedAt
+    totalViewer
+    tags
+    items
+}

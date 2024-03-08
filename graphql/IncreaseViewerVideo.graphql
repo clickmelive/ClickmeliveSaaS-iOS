@@ -1,0 +1,5 @@
+mutation IncreaseViewerVideo($id: ID!, $userId: ID!) {
+    increaseViewerVideo(id: $id, userId: $userId) {
+        ...VideoGQL
+    }
+}

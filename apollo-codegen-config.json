@@ -1,0 +1,48 @@
+{
+  "schemaNamespace" : "ClickmeliveSaasAPI",
+  "input" : {
+    "operationSearchPaths" : [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "**/*.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./ClickmeliveSaasAPI",
+      "moduleType" : {
+        "swiftPackageManager" : {
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  },
+  "schemaDownloadConfiguration": {
+      "downloadMethod": {
+          "introspection": {
+              "endpointURL": "https://zda3sspwdvfufbzqa6at2bfheu.appsync-api.eu-west-1.amazonaws.com/graphql",
+              "httpMethod": {
+                  "POST": {}
+              },
+              "includeDeprecatedInputValues": false,
+              "outputFormat": "SDL"
+          }
+      },
+      "downloadTimeout": 60,
+      "headers":  [
+        {
+          "key": "x-api-key",
+          "value": "da2-oivpjexfrffapfmhyrcuko4vwq"
+        }
+      ],
+      "outputPath": "./graphql/schema.graphqls"
+  }
+}

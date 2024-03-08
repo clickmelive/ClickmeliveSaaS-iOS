@@ -1,0 +1,5 @@
+mutation LikeLiveEvent($liveEventId: ID!, $userId: ID!, $like: Boolean!) {
+    likeLiveEvent(liveEventId: $liveEventId, userId: $userId, like: $like) {
+        ...LiveEventGQL
+    }
+}

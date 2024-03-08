@@ -1,0 +1,5 @@
+mutation CreateChatMessage($input: ChatMessageInput!) {
+    createChatMessage(input: $input) {
+        ...ChatMessageGQL
+    }
+}

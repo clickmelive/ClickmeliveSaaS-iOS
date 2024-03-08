@@ -1,0 +1,5 @@
+subscription OnVideoStatsChange($id: ID!) {
+    onVideoStatsChange(id: $id) {
+        ...VideoGQL
+    }
+}

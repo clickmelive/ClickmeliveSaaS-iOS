@@ -1,0 +1,8 @@
+fragment ChatMessageGQL on ChatMessage {
+    id
+    eventId
+    userId
+    userDisplayName
+    message
+    createdAt
+}

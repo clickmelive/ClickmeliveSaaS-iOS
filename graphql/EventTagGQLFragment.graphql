@@ -1,0 +1,6 @@
+fragment EventTagGQL on Tag {
+    id
+    title
+    createdAt
+    updatedAt
+}

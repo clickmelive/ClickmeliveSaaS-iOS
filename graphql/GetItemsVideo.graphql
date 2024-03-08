@@ -1,0 +1,5 @@
+query GetItemsByVideoId($id: ID!) {
+    getEventItemsByVideoId(id: $id) {
+        ...EventItemGQL
+    }
+}

@@ -1,0 +1,8 @@
+query GetTags($limit: Int, $nextToken: String) {
+    getTags(limit: $limit, nextToken: $nextToken) {
+        nextToken
+        tags {
+            ...EventTagGQL
+        }
+    }
+}

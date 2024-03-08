@@ -1,0 +1,12 @@
+query SearchLiveEvents($input: LiveEventSearchInput!) {
+    searchLiveEvents(
+        input: $input
+    ) {
+        metadata {
+            ...MetadataGQL
+        }
+        liveEvents {
+            ...LiveEventGQL
+        }
+    }
+}

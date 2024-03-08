@@ -1,0 +1,5 @@
+mutation IncreaseViewerLiveEvent($id: ID!, $userId: ID!) {
+    increaseViewerLiveEvent(id: $id, userId: $userId) {
+        ...LiveEventGQL
+    }
+}

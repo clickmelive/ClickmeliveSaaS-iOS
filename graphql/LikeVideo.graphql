@@ -1,0 +1,5 @@
+mutation LikeVideo($videoId: ID!, $userId: ID!, $like: Boolean!) {
+    likeVideo(videoId: $videoId, userId: $userId, like: $like) {
+        ...VideoGQL
+    }
+}

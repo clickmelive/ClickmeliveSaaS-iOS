@@ -1,0 +1,10 @@
+query GetVideos($limit: Int, $nextToken: String) {
+    getVideos(limit: $limit, nextToken: $nextToken) {
+        nextToken
+        videos {
+            ...VideoGQL
+            tags
+            items
+        }
+    }
+}

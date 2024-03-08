@@ -1,0 +1,25 @@
+query GetLiveEvents($limit: Int, $nextToken: String) {
+    getLiveEvents(limit: $limit, nextToken: $nextToken) {
+        nextToken
+        liveEvents {
+            id
+            status
+            type
+            title
+            userId
+            description
+            thumbnailUrl
+            replayUrl
+            teaserUrl
+            playbackUrl
+            isActive
+            totalLikeCount
+            estimatedStartingDate
+            startingDate
+            endingDate
+            createdAt
+            updatedAt
+            totalViewer
+        }
+    }
+}

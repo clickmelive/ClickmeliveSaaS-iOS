@@ -1,0 +1,10 @@
+fragment ChatBanGQL on ChatMessageBan {
+    id
+    eventIds
+    userId
+    userDisplayName
+    messageId
+    message
+    banType
+    createdAt
+}

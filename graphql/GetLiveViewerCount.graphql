@@ -1,0 +1,5 @@
+query GetLiveViewerCount($id: ID!) {
+    getLiveViewerCount(id: $id){
+        viewerCount
+    }
+}

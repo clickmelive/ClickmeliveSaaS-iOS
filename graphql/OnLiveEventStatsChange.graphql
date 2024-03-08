@@ -1,0 +1,5 @@
+subscription OnLiveEventStatsChange($id: ID!) {
+    onLiveEventStatsChange(id: $id) {
+        ...LiveEventGQL
+    }
+}

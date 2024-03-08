@@ -1,0 +1,5 @@
+query GetChatBan($userId: ID!) {
+    getChatBan(userId: $userId) {
+        ...ChatBanGQL
+    }
+}

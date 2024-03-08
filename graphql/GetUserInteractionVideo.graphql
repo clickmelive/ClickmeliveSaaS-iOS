@@ -1,0 +1,9 @@
+query GetUserInteractionForVideo($id: ID!, $userId: ID!) {
+    getUserInteractionForVideo(
+        id: $id, userId: $userId
+    ) {
+        like
+        videoId
+        userId
+    }
+}

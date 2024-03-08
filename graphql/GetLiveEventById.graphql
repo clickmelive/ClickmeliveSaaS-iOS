@@ -1,0 +1,28 @@
+query GetLiveEventById($id: ID!) {
+    getLiveEventById(id: $id) {
+        id
+        status
+        type
+        title
+        userId
+        description
+        thumbnailUrl
+        replayUrl
+        teaserUrl
+        playbackUrl
+        isActive
+        totalLikeCount
+        estimatedStartingDate
+        startingDate
+        endingDate
+        createdAt
+        updatedAt
+        totalViewer
+        tags {
+            ...EventTagGQL
+        }
+        items {
+            ...EventItemGQL
+        }
+    }
+}
