@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/clickmelive/ClickmeliveSaasAPI.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "dfa8c8f8bd331a7185f16f02beeda6bb876797ee"
+        "revision" : "dfa8c8f8bd331a7185f16f02beeda6bb876797ee",
+        "version" : "1.0.0"
       }
     },
     {

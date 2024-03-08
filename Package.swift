@@ -14,7 +14,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apollographql/apollo-ios.git", from: "1.0.0"),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0"),
-        .package(url: "https://github.com/clickmelive/ClickmeliveSaasAPI.git", branch: "main"),
+        .package(url: "https://github.com/clickmelive/ClickmeliveSaasAPI.git", from: "1.0.0"),
     ],
     targets: [
         .target(
