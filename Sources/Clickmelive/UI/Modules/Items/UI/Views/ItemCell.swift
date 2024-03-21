@@ -59,7 +59,7 @@ class ItemCell: _CollectionViewCell {
             contentView.addSubview($0)
         }
         
-        ivItem.anchor(left: contentView.leftAnchor, leftConstant: 16, widthConstant: 112, heightConstant: 87)
+        ivItem.anchor(left: contentView.leftAnchor, leftConstant: 16, widthConstant: 112, heightConstant: 86)
         ivItem.anchorCenterYToSuperview()
         
         ivArrow.anchor(right: contentView.rightAnchor, rightConstant: 16, widthConstant: 14, heightConstant: 27)

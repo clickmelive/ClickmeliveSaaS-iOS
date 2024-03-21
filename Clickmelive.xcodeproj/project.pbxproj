@@ -213,6 +213,8 @@
 		36EDB64D2B972C2700F30CAD /* PIPUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64C2B972C2700F30CAD /* PIPUsable.swift */; };
 		36EDB64F2B972C4200F30CAD /* PIPKitEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */; };
 		36EDB6512B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */; };
+		36FB99172BACE5F1007E24CC /* Item.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FB99162BACE5F1007E24CC /* Item.xcstrings */; };
+		36FB991A2BACE631007E24CC /* ItemLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB99192BACE631007E24CC /* ItemLocalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -453,6 +455,8 @@
 		36EDB64C2B972C2700F30CAD /* PIPUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPUsable.swift; sourceTree = "<group>"; };
 		36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPKitEventDispatcher.swift; sourceTree = "<group>"; };
 		36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PIPKitExtensions.swift"; sourceTree = "<group>"; };
+		36FB99162BACE5F1007E24CC /* Item.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Item.xcstrings; sourceTree = "<group>"; };
+		36FB99192BACE631007E24CC /* ItemLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLocalization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,6 +964,7 @@
 		366D0B792B947CE200A42E2B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				36FB99182BACE5F7007E24CC /* Localization */,
 				366D0B7A2B947D0B00A42E2B /* ItemViewModel.swift */,
 			);
 			path = Presentation;
@@ -1451,6 +1456,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		36FB99182BACE5F7007E24CC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				36FB99162BACE5F1007E24CC /* Item.xcstrings */,
+				36FB99192BACE631007E24CC /* ItemLocalization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1511,6 +1525,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 3695F0152B935DDD003925F1;
 			packageReferences = (
@@ -1532,6 +1547,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36FB99172BACE5F1007E24CC /* Item.xcstrings in Resources */,
 				362E0BB62B9735A6002BE25C /* Shared.xcassets in Resources */,
 				36EDB5D22B95F9A500F30CAD /* LiveEvent.xcstrings in Resources */,
 			);
@@ -1587,6 +1603,7 @@
 				362E0C642B97C183002BE25C /* VideoLikeManagerFactory.swift in Sources */,
 				366D0B0C2B93752900A42E2B /* LiveEventStatus.swift in Sources */,
 				362E0C5E2B97BFF3002BE25C /* GetUserInteractionForVideoQueryMapper.swift in Sources */,
+				36FB991A2BACE631007E24CC /* ItemLocalization.swift in Sources */,
 				36EDB6112B96913400F30CAD /* UserDefaults+UIExtensions.swift in Sources */,
 				366D0BB42B9494D200A42E2B /* LiveEventFinder.swift in Sources */,
 				362E0BAF2B972EF4002BE25C /* ItemsUIComposer.swift in Sources */,

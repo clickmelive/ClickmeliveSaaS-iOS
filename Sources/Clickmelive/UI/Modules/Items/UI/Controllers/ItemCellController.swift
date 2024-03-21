@@ -14,7 +14,7 @@ protocol ItemCellControllerOutput {
 final class ItemCellController: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private enum Constants {
-        static let cellHeight: CGFloat = 120.0
+        static let cellHeight: CGFloat = 112.0
     }
     
     private var itemCell = Components.default.itemCell

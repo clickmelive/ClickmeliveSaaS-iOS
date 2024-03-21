@@ -27,8 +27,9 @@ final class ItemsViewController: UIViewController {
 }
 
 extension ItemsViewController {
-    func display(_ items: [CollectionCellController]) {
+    func display(_ items: [CollectionCellController], localization: ItemLocalization) {
         itemsVCView.itemsList.display(items)
+        itemsVCView.setItemCount(items.count, localization: localization)
     }
     
     private func setupCollectionView() {
