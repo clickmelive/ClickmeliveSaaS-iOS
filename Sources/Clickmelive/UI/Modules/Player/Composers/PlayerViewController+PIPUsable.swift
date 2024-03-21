@@ -25,6 +25,7 @@ extension PlayerViewController: PIPUsable {
     func enterPipMode() {
         playerVCView.bringSubviewToFront(playerVCView.playerView)
         playerVCView.bringSubviewToFront(playerVCView.pipInteractionOverlay)
+        playerVCView.playerView.seekSlider.isHidden = true
         playerVCView.pipInteractionOverlay.isHidden = false
         
         if let tapGesture = viewTapGesture {
@@ -37,6 +38,7 @@ extension PlayerViewController: PIPUsable {
     func enterFullMode() {
         playerVCView.sendSubviewToBack(playerVCView.playerView)
         playerVCView.sendSubviewToBack(playerVCView.pipInteractionOverlay)
+        playerVCView.playerView.seekSlider.isHidden = false
         playerVCView.pipInteractionOverlay.isHidden = true
         playerVCView.chatView.chatList.reloadData()
         
