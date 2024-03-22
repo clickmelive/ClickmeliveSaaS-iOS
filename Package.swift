@@ -32,7 +32,9 @@ let package = Package(
                 .process("UI/Shared.xcassets"),
                 .process("Core/Domain/Live Event/Presentation/Localization/LiveEvent.xcstrings"),
                 .process("Core/Domain/Video/Presentation/Localization/Video.xcstrings"),
-                .process("Core/Domain/Date/Presentation/Localization/Date.xcstrings")
+                .process("Core/Domain/Item/Presentation/Localization/Item.xcstrings"),
+                .process("Core/Domain/Video/Presentation/Localization/Video.xcstrings"),
+                .process("Core/Domain/Date/Presentation/Localization/Date.xcstrings"),
             ]
         ),
         .binaryTarget(

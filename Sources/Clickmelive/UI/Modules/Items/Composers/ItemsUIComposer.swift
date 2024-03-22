@@ -14,13 +14,14 @@ final class ItemsUIComposer {
         let controller = ItemsViewController()
         
         let imageLoader = SDWebImageLoader()
+        let itemLocalization = ItemLocalization()
         
         controller.display(items.map { item in
             let itemViewModel = ItemViewModel(model: item)
             let cellController = ItemCellController(viewModel: itemViewModel, imageLoader: imageLoader)
             cellController.output = itemCellControllerOutput
             return CollectionCellController(id: UUID(), cellController)
-        })
+        }, localization: itemLocalization)
         
         return controller
     }
