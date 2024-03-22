@@ -213,6 +213,8 @@
 		36EDB64D2B972C2700F30CAD /* PIPUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64C2B972C2700F30CAD /* PIPUsable.swift */; };
 		36EDB64F2B972C4200F30CAD /* PIPKitEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */; };
 		36EDB6512B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */; };
+		36FB991F2BAD4998007E24CC /* Date.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FB991E2BAD4998007E24CC /* Date.xcstrings */; };
+		36FB99212BAD49C0007E24CC /* DateLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB99202BAD49C0007E24CC /* DateLocalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -453,6 +455,8 @@
 		36EDB64C2B972C2700F30CAD /* PIPUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPUsable.swift; sourceTree = "<group>"; };
 		36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPKitEventDispatcher.swift; sourceTree = "<group>"; };
 		36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PIPKitExtensions.swift"; sourceTree = "<group>"; };
+		36FB991E2BAD4998007E24CC /* Date.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Date.xcstrings; sourceTree = "<group>"; };
+		36FB99202BAD49C0007E24CC /* DateLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLocalization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -769,6 +773,7 @@
 			children = (
 				36EDB6342B96950200F30CAD /* API Configuration */,
 				36EDB5D62B95F9D800F30CAD /* Chat */,
+				36FB991B2BAD497A007E24CC /* Date */,
 				366D0B152B9375D200A42E2B /* Error */,
 				366D0B112B93757600A42E2B /* Item */,
 				366D0B042B93742A00A42E2B /* Live Event */,
@@ -1451,6 +1456,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		36FB991B2BAD497A007E24CC /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				36FB991C2BAD4981007E24CC /* Presentation */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		36FB991C2BAD4981007E24CC /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				36FB991D2BAD498B007E24CC /* Localization */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		36FB991D2BAD498B007E24CC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				36FB991E2BAD4998007E24CC /* Date.xcstrings */,
+				36FB99202BAD49C0007E24CC /* DateLocalization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1511,6 +1541,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 3695F0152B935DDD003925F1;
 			packageReferences = (
@@ -1534,6 +1565,7 @@
 			files = (
 				362E0BB62B9735A6002BE25C /* Shared.xcassets in Resources */,
 				36EDB5D22B95F9A500F30CAD /* LiveEvent.xcstrings in Resources */,
+				36FB991F2BAD4998007E24CC /* Date.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,6 +1711,7 @@
 				36EDB6102B96912B00F30CAD /* CollectionCellController.swift in Sources */,
 				362E0BAC2B972ED6002BE25C /* ItemsFlow.swift in Sources */,
 				362E0C422B97BCE5002BE25C /* VideoStatsChangeManager.swift in Sources */,
+				36FB99212BAD49C0007E24CC /* DateLocalization.swift in Sources */,
 				366D0C052B95276B00A42E2B /* EventItemGQL+DomainConversion.swift in Sources */,
 				362E0C1A2B97AE46002BE25C /* ChatMessageLoader.swift in Sources */,
 				362E0BA52B972E6A002BE25C /* Coordinator.swift in Sources */,

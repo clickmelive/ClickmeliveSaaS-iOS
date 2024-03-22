@@ -22,4 +22,9 @@ extension Date {
     func timeAsString() -> String {
         return DateFormatter.timeAsString.string(from: self)
     }
+    
+    func isToday() -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDateInToday(self)
+    }
 }

@@ -84,11 +84,20 @@ final class LiveEventViewModel {
                   let date = DateFormatter.iso8601WithMilliseconds.date(from: estimatedStartingDate) else {
                 return nil
             }
-            return LiveEventLocalization.shared.estimatedStartingDate(
-                day: date.dayAsString(),
-                month: date.monthAsString(),
-                time: date.timeAsString()
-            )
+            
+            if date.isToday() {
+                return LiveEventLocalization.shared.estimatedStartingDate(
+                    day: DateLocalization.shared.today,
+                    month: "",
+                    time: date.timeAsString()
+                )
+            } else {
+                return LiveEventLocalization.shared.estimatedStartingDate(
+                    day: date.dayAsString(),
+                    month: date.monthAsString(),
+                    time: date.timeAsString()
+                )
+            }
         case .ReadyToStream:
             return LiveEventLocalization.shared.statusReadyToStream
         case .Streaming:
