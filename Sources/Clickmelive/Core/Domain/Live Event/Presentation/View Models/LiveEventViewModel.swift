@@ -88,7 +88,6 @@ final class LiveEventViewModel {
             if date.isToday() {
                 return LiveEventLocalization.shared.estimatedStartingDate(
                     day: DateLocalization.shared.today,
-                    month: "",
                     time: date.timeAsString()
                 )
             } else {

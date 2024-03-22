@@ -16,7 +16,7 @@ final class LiveEventLocalization {
     
     init() {}
     
-    func estimatedStartingDate(day: String, month: String, time: String) -> String {
+    func estimatedStartingDate(day: String = "", month: String = "", time: String = "") -> String {
         let format = NSLocalizedString(
             "LiveEventEstimatedStartingDate",
             tableName: table,
