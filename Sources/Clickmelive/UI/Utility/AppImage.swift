@@ -7,6 +7,7 @@
 
 enum AppImage: String {
     case iconChat
+    case iconChatDisabled
     case iconLike
     case iconLiked
     case iconLive

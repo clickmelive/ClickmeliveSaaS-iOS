@@ -20,6 +20,10 @@ extension ChatView {
 }
 
 extension ChatView {
+    func toggleVisibility() {
+        isHidden.toggle()
+    }
+    
     func display(chatMessages: [CollectionCellController]) {
         if chatList.didScroll(threshold: scrollThreshold) {
             chatList.appendCellControllers(chatMessages)

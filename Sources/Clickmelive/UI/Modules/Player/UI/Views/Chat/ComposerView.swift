@@ -20,6 +20,19 @@ extension ComposerView {
 }
 
 extension ComposerView {
+    func toggleVisibility() {
+        composerContainer.isHidden.toggle()
+        updateChatImage()
+    }
+    
+    func updateChatImage() {
+        btnChatVisibility.setImage(composerContainer.isHidden ?
+            .appImage(.iconChatDisabled): .appImage(.iconChat)
+                                   , for: .normal)
+    }
+}
+
+extension ComposerView {
     func setSendButtonState(isEnabled: Bool) {
         btnSendMessage.isEnabled = isEnabled
         btnSendMessage.alpha = isEnabled ? 1.0: 0.3
@@ -59,18 +72,20 @@ class ComposerView: _View {
         
         btnSendMessage.isEnabled = false
     }
-   
+    
     override func setUpLayout() {
         super.setUpLayout()
         constrainHeight(viewHeight)
         
-        composerContainer.addSubview(lblStartTyping)
+        [lblStartTyping, btnSendMessage].forEach {
+            composerContainer.addSubview($0)
+        }
         
-        [btnChatVisibility, composerContainer, btnSendMessage].forEach {
+        [btnChatVisibility, composerContainer].forEach {
             addSubview($0)
         }
         
-        btnSendMessage.anchor(right: composerContainer.rightAnchor, rightConstant: 24, widthConstant: 31, heightConstant: 31)
+        btnSendMessage.anchor(right: composerContainer.rightAnchor, rightConstant: 10, widthConstant: 31, heightConstant: 31)
         btnSendMessage.anchorCenterYToSuperview()
         
         lblStartTyping.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -90,7 +105,7 @@ class ComposerView: _View {
         btnSendMessage.setImage(.appImage(.iconSend), for: .normal)
         lblStartTyping.text = "Yazmaya Başla..."
     }
-   
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         composerContainer.layer.cornerRadius = bounds.height / 2

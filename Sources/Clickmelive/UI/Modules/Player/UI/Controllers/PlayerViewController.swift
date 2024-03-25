@@ -193,7 +193,8 @@ extension PlayerViewController {
     }
     
     @objc private func chatVisibilityTapped() {
-        playerVCView.chatView.isHidden.toggle()
+        playerVCView.chatView.toggleVisibility()
+        playerVCView.composerView.toggleVisibility()
     }
     
     @objc func dismissKeyboard(_ gesture: UITapGestureRecognizer) {
