@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ItemsViewController: UIViewController {
+final class ItemsViewController: BottomSheetController {
     
     private lazy var itemsVCView = Components.default.itemsVCView.init()
     private lazy var itemCell = Components.default.itemCell

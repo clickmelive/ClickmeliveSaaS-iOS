@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D550D912BB1499A0085B98B /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D550D902BB1499A0085B98B /* BottomSheetController.swift */; };
+		2D550D932BB149AB0085B98B /* BottomSheetTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D550D922BB149AB0085B98B /* BottomSheetTransitioningDelegate.swift */; };
+		2D550D952BB149BD0085B98B /* BottomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D550D942BB149BD0085B98B /* BottomSheetPresentationController.swift */; };
+		2D550D972BB149CE0085B98B /* BottomSheetInteractiveDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D550D962BB149CE0085B98B /* BottomSheetInteractiveDismissalTransition.swift */; };
 		36206E492B936B7100F76521 /* GraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36206E482B936B7100F76521 /* GraphQLClient.swift */; };
 		362E0BA52B972E6A002BE25C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E0BA42B972E6A002BE25C /* Coordinator.swift */; };
 		362E0BA72B972E7C002BE25C /* PlayerFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E0BA62B972E7C002BE25C /* PlayerFlow.swift */; };
@@ -213,13 +217,17 @@
 		36EDB64D2B972C2700F30CAD /* PIPUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64C2B972C2700F30CAD /* PIPUsable.swift */; };
 		36EDB64F2B972C4200F30CAD /* PIPKitEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */; };
 		36EDB6512B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */; };
-		36FB991F2BAD4998007E24CC /* Date.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FB991E2BAD4998007E24CC /* Date.xcstrings */; };
-		36FB99212BAD49C0007E24CC /* DateLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB99202BAD49C0007E24CC /* DateLocalization.swift */; };
 		36FB99172BACE5F1007E24CC /* Item.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FB99162BACE5F1007E24CC /* Item.xcstrings */; };
 		36FB991A2BACE631007E24CC /* ItemLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB99192BACE631007E24CC /* ItemLocalization.swift */; };
+		36FB991F2BAD4998007E24CC /* Date.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FB991E2BAD4998007E24CC /* Date.xcstrings */; };
+		36FB99212BAD49C0007E24CC /* DateLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB99202BAD49C0007E24CC /* DateLocalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D550D902BB1499A0085B98B /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
+		2D550D922BB149AB0085B98B /* BottomSheetTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransitioningDelegate.swift; sourceTree = "<group>"; };
+		2D550D942BB149BD0085B98B /* BottomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresentationController.swift; sourceTree = "<group>"; };
+		2D550D962BB149CE0085B98B /* BottomSheetInteractiveDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetInteractiveDismissalTransition.swift; sourceTree = "<group>"; };
 		36206E482B936B7100F76521 /* GraphQLClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClient.swift; sourceTree = "<group>"; };
 		36206E4B2B936E5400F76521 /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
 		362E0BA42B972E6A002BE25C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -457,10 +465,10 @@
 		36EDB64C2B972C2700F30CAD /* PIPUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPUsable.swift; sourceTree = "<group>"; };
 		36EDB64E2B972C4200F30CAD /* PIPKitEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIPKitEventDispatcher.swift; sourceTree = "<group>"; };
 		36EDB6502B972C6800F30CAD /* UIViewController+PIPKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PIPKitExtensions.swift"; sourceTree = "<group>"; };
-		36FB991E2BAD4998007E24CC /* Date.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Date.xcstrings; sourceTree = "<group>"; };
-		36FB99202BAD49C0007E24CC /* DateLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLocalization.swift; sourceTree = "<group>"; };
 		36FB99162BACE5F1007E24CC /* Item.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Item.xcstrings; sourceTree = "<group>"; };
 		36FB99192BACE631007E24CC /* ItemLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLocalization.swift; sourceTree = "<group>"; };
+		36FB991E2BAD4998007E24CC /* Date.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Date.xcstrings; sourceTree = "<group>"; };
+		36FB99202BAD49C0007E24CC /* DateLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLocalization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,6 +488,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D550D892BB0FCE10085B98B /* Bottom Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2D550D902BB1499A0085B98B /* BottomSheetController.swift */,
+				2D550D922BB149AB0085B98B /* BottomSheetTransitioningDelegate.swift */,
+				2D550D942BB149BD0085B98B /* BottomSheetPresentationController.swift */,
+				2D550D962BB149CE0085B98B /* BottomSheetInteractiveDismissalTransition.swift */,
+			);
+			path = "Bottom Sheet";
+			sourceTree = "<group>";
+		};
 		36206E4A2B936E5400F76521 /* graphql */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +971,7 @@
 			isa = PBXGroup;
 			children = (
 				366D0B722B947C3600A42E2B /* Components.swift */,
+				2D550D892BB0FCE10085B98B /* Bottom Sheet */,
 				366D0B742B947C6200A42E2B /* Collection View */,
 			);
 			path = Components;
@@ -1461,6 +1481,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		36FB99182BACE5F7007E24CC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				36FB99162BACE5F1007E24CC /* Item.xcstrings */,
+				36FB99192BACE631007E24CC /* ItemLocalization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		36FB991B2BAD497A007E24CC /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,15 +1511,6 @@
 			children = (
 				36FB991E2BAD4998007E24CC /* Date.xcstrings */,
 				36FB99202BAD49C0007E24CC /* DateLocalization.swift */,
-			);
-			path = Localization;
-			sourceTree = "<group>";
-		};
-		36FB99182BACE5F7007E24CC /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				36FB99162BACE5F1007E24CC /* Item.xcstrings */,
-				36FB99192BACE631007E24CC /* ItemLocalization.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1597,6 +1617,7 @@
 				362E0C682B97C1D6002BE25C /* LikeVideoMutationMapper.swift in Sources */,
 				362E0BFB2B97713F002BE25C /* LiveEventLikeManagerFactory.swift in Sources */,
 				366D0C0C2B9536E300A42E2B /* GraphQLNullable+CoreExtensions.swift in Sources */,
+				2D550D912BB1499A0085B98B /* BottomSheetController.swift in Sources */,
 				362E0C162B97ABE8002BE25C /* ChatMessageGQL+DomainConversion.swift in Sources */,
 				362E0BF52B976D96002BE25C /* LiveEventUserInteractionManagerFactory.swift in Sources */,
 				36EDB5952B95F8FE00F30CAD /* DateFormatter+CoreExtensions.swift in Sources */,
@@ -1620,6 +1641,7 @@
 				362E0BF32B976D57002BE25C /* LiveEventUserInteractionManager.swift in Sources */,
 				362E0BCE2B975D96002BE25C /* SDWebImageLoader.swift in Sources */,
 				362E0C0A2B97AA48002BE25C /* ChatMessageCreator.swift in Sources */,
+				2D550D952BB149BD0085B98B /* BottomSheetPresentationController.swift in Sources */,
 				366D0B352B9392A500A42E2B /* LiveEventLiker.swift in Sources */,
 				362E0C4C2B97BE76002BE25C /* VideoViewerIncreaseManager.swift in Sources */,
 				36EDB61B2B96913900F30CAD /* BaseViews.swift in Sources */,
@@ -1743,8 +1765,10 @@
 				36EDB6262B96915800F30CAD /* ChatCell.swift in Sources */,
 				362E0BF12B97648F002BE25C /* GraphQLLiveEventViewerIncreaser.swift in Sources */,
 				36EDB5DB2B95F9D800F30CAD /* ChatMessage.swift in Sources */,
+				2D550D972BB149CE0085B98B /* BottomSheetInteractiveDismissalTransition.swift in Sources */,
 				36EDB61E2B96914400F30CAD /* ItemsViewController.swift in Sources */,
 				362E0BD02B975DCC002BE25C /* CMLUserDefaults.swift in Sources */,
+				2D550D932BB149AB0085B98B /* BottomSheetTransitioningDelegate.swift in Sources */,
 				362E0BD52B975EC2002BE25C /* LiveEventDetailManagerFactory.swift in Sources */,
 				362E0C032B97A4F1002BE25C /* GraphQLLiveEventViewerLoader.swift in Sources */,
 				366D0B222B938E6000A42E2B /* GetUserInteractionForLiveEventQueryMapper.swift in Sources */,

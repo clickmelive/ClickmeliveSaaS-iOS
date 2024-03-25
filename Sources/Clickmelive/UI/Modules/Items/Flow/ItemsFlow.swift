@@ -34,8 +34,8 @@ class ItemsFlow: ChildCoordinator {
             self?.stop()
         }
         
-        itemsUIComposer.modalPresentationStyle = .formSheet
-        itemsUIComposer.modalTransitionStyle = .coverVertical
+        itemsUIComposer.preferredSheetCornerRadius = 26
+        itemsUIComposer.preferredSheetSizing = .custom(0.6)
         
         controller?.present(itemsUIComposer, animated: true)
     }

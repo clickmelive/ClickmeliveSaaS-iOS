@@ -15,6 +15,11 @@ extension ItemsVCView {
 
 class ItemsVCView: _View {
     
+    private(set) lazy var handleArea: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     private(set) lazy var lblItemCount: UILabel = {
         let label = UILabel()
         return label
@@ -24,29 +29,40 @@ class ItemsVCView: _View {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = ListCollectionView(layout: layout)
-        cv.backgroundColor = .clear
-        cv.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
         return cv
     }()
     
+    override func setUp() {
+        super.setUp()
+        itemsList.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
+    }
+    
     override func setUpAppearance() {
         super.setUpAppearance()
+       
         backgroundColor = .appColor(.appBackground)
+        
+        handleArea.backgroundColor = .appColor(.appBlack).withAlphaComponent(0.5)
+        handleArea.layer.cornerRadius = 2
         
         lblItemCount.textColor = .appColor(.appBlack).withAlphaComponent(0.5)
         lblItemCount.font = .appFont(.medium, size: 12)
+        
+        itemsList.backgroundColor = .clear
     }
     
     override func setUpLayout() {
         super.setUpLayout()
         
-        [lblItemCount, itemsList].forEach {
+        [handleArea, lblItemCount, itemsList].forEach {
             addSubview($0)
-            
         }
         
-        lblItemCount.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, right: rightAnchor, topConstant: 19, leftConstant: 16, rightConstant: 16)
+        handleArea.anchor(top: topAnchor, topConstant: 13, widthConstant: 49, heightConstant: 4)
+        handleArea.anchorCenterXToSuperview()
         
-        itemsList.anchor(top: lblItemCount.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        lblItemCount.anchor(top: handleArea.bottomAnchor, left: leftAnchor, right: rightAnchor, topConstant: 4, leftConstant: 16, rightConstant: 16)
+        
+        itemsList.anchor(top: lblItemCount.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 4)
     }
 }

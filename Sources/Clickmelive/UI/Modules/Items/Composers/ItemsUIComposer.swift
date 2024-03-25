@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 final class ItemsUIComposer {
     private init() {}
     
@@ -26,4 +26,3 @@ final class ItemsUIComposer {
         return controller
     }
 }
-
