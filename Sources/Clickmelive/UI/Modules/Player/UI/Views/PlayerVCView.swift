@@ -147,6 +147,7 @@ class PlayerVCView: _View {
         clipsToBounds = true
         backgroundColor = .appColor(.appBlack)
         
+        itemsView.isHidden = true
         chatView.isHidden = true
         composerView.isHidden = true
         
