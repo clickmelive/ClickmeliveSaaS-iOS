@@ -10,30 +10,29 @@ class UserAuthenticatorCacheDecorator: UserAuthenticator {
     private let decoratee: UserAuthenticator
     private let userDefaults: CMLUserDefaults
     
-    init(decoratee: UserAuthenticator,
-         userDefaults: CMLUserDefaults) {
+    init(decoratee: UserAuthenticator, userDefaults: CMLUserDefaults) {
         self.decoratee = decoratee
         self.userDefaults = userDefaults
     }
     
     func authenticate(apiKey: String, completion: @escaping (UserAuthenticator.Result) -> Void) {
-        if let cachedConfiguration = userDefaults.apiConfiguration {
-            // Return the cached configuration without making a network request
-            completion(.success(cachedConfiguration))
-            return
-        }
-        
-        // No cached configuration found, proceed with the actual authentication
+        // Always attempt to authenticate by calling the endpoint
         decoratee.authenticate(apiKey: apiKey) { [weak self] result in
             switch result {
-            case .success(let configuration):
+            case let .success(configuration):
                 // Cache the successful configuration for future use
                 self?.userDefaults.apiConfiguration = configuration
                 completion(.success(configuration))
-            case .failure(let error):
-                completion(.failure(error))
+            case let .failure(error):
+                // Authentication failed, check if there's a cached configuration
+                if let cachedConfiguration = self?.userDefaults.apiConfiguration {
+                    // Return the cached configuration
+                    completion(.success(cachedConfiguration))
+                } else {
+                    // No cached configuration, forward the authentication error
+                    completion(.failure(error))
+                }
             }
         }
     }
-    
 }
