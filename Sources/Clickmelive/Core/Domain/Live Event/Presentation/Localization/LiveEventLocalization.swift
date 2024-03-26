@@ -10,7 +10,6 @@ import Foundation
 final class LiveEventLocalization {
     
     var table: String { "LiveEvent" }
-    var bundle: Bundle = Bundle.module
     
     static let shared = LiveEventLocalization()
     
@@ -20,7 +19,7 @@ final class LiveEventLocalization {
         let format = NSLocalizedString(
             "LiveEventEstimatedStartingDate",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for items count")
     
         return String(format: format, day, month, time)
@@ -30,7 +29,7 @@ final class LiveEventLocalization {
         let format = NSLocalizedString(
             "LiveEventItemsCount",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for items count")
     
         return String(format: format, count)
@@ -40,7 +39,7 @@ final class LiveEventLocalization {
         NSLocalizedString(
             "LiveEventStatusReadyToStream",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for ready to stream status")
     }
     
@@ -48,7 +47,7 @@ final class LiveEventLocalization {
         NSLocalizedString(
             "LiveEventStatusReplayAvailable",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for replay available status")
     }
     
@@ -56,7 +55,7 @@ final class LiveEventLocalization {
         NSLocalizedString(
             "LiveEventStatusStreamEnded",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for stream ended status")
     }
     
@@ -64,7 +63,7 @@ final class LiveEventLocalization {
         NSLocalizedString(
             "LiveEventStatusStreaming",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for streaming status")
     }
     
@@ -72,7 +71,7 @@ final class LiveEventLocalization {
         NSLocalizedString(
             "LiveEventStatusCancelled",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for cancelled status")
     }
 }

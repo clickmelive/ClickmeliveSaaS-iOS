@@ -10,7 +10,6 @@ import Foundation
 final class DateLocalization {
     
     var table: String { "Date" }
-    var bundle: Bundle = Bundle.module
     
     static let shared = DateLocalization()
     
@@ -20,7 +19,7 @@ final class DateLocalization {
         NSLocalizedString(
             "DateToday",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for today")
     }
 }

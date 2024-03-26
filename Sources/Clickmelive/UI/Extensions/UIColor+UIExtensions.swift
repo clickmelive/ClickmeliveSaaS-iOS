@@ -9,6 +9,6 @@ import UIKit
 
 extension UIColor {
     static func appColor(_ color: AppColor) -> UIColor {
-        return UIColor(named: color.rawValue, in: Bundle.module, compatibleWith: nil)!
+        return UIColor(named: color.rawValue, in: .clickmeliveBundle, compatibleWith: nil)!
     }
 }

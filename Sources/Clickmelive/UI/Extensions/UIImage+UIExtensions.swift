@@ -9,6 +9,6 @@ import UIKit
 
 extension UIImage {
     static func appImage(_ image: AppImage) -> UIImage? {
-        return UIImage(named: image.rawValue, in: Bundle.module, compatibleWith: nil)
+        return UIImage(named: image.rawValue, in: .clickmeliveBundle, compatibleWith: nil)
     }
 }

@@ -9,6 +9,9 @@ import UIKit
 
 extension ComposerView {
     func configure(with viewModel: VideoViewModel) {
+        Bundle.allBundles.forEach {
+            print($0.bundleIdentifier)
+        }
         isHidden = true
     }
 }

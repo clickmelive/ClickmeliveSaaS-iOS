@@ -10,7 +10,6 @@ import Foundation
 final class ItemLocalization {
     
     var table: String { "Item" }
-    var bundle: Bundle = Bundle.module
     
     init() {}
     
@@ -18,7 +17,7 @@ final class ItemLocalization {
         let format = NSLocalizedString(
             "ItemsCount",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for items count")
     
         return String(format: format, count)

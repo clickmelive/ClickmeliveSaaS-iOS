@@ -10,7 +10,6 @@ import Foundation
 final class VideoLocalization {
     
     var table: String { "Video" }
-    var bundle: Bundle = Bundle.module
     
     static let shared = VideoLocalization()
     
@@ -20,7 +19,7 @@ final class VideoLocalization {
         let format = NSLocalizedString(
             "VideoItemsCount",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for items count")
     
         return String(format: format, count)
@@ -30,7 +29,7 @@ final class VideoLocalization {
         NSLocalizedString(
             "VideoStatus",
             tableName: table,
-            bundle: bundle,
+            bundle: .clickmeliveBundle,
             comment: "Title for video status")
     }
 }
